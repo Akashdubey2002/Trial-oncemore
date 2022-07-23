@@ -4,9 +4,201 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+   
+<title>Web Page</title>
+    <style>
+        *{
+            padding:0;margin:0;box-sizing:border-box;
+        }
+        body{
+            background-color: white;
+
+        }
+        #card{
+            height: inherit;
+            width: 400px;
+            /*color: white;
+            /background-color: #D9AFD9;/
+/background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);/
+            border: 2px solid white;
+            border-bottom-right-radius: 40px;
+            !*background-color: rgb(199, 151, 151); */
+            /margin: 30px 40px 30px 40px;/
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            transition:.5s;
+        }
+        #card:hover{
+            transform: scale(1.09);
+            box-shadow:1px 0.5px 0.5px 1px black;
+
+        }
+        #img
+        {   margin-top: 5px;
+            height: 200px;
+            width: auto;
+            background-size: cover;
+            border: 2px solid white;
+
+            background-color: rgb(14, 50, 38);
+        }
+        #title{
+            /* float: left; */
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        #content{
+            height: inherit;
+            width: auto;
+            /color: rgb(255, 255, 255);/
+
+        }
+        #link{
+           text-decoration: none;
+            font-size: 1.3rem;
+            color:#d309d3;
+
+            background-color: #faf5ff;
+           border: 1px solid #992499;
+            padding:4px 4px 2px 4px;
+            border-radius: 2px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #link:hover{
+            background-color: #992499;
+            color: white;
+        }
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #header{
+            top: 0%;
+    width:100%;
+    height:100px;
+    /background-color:grey;/
+    /background-color:rgba(0, 0, 0, 0.6);/
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /*padding:5px 20px;
+    margin-bottom: 40px;*/
+    font-size: 50px;
+    text-shadow: 5px 5px pink ;
+    
+    
+}
+nav ul{
+    list-style: none;
+    display: flex;
+}
+nav ul li a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    transition: .5s;
+}
+nav ul li a:hover{
+    background-color: white;
+    color: black;
+}
+#logo{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+}
+    </style>
 </head>
 <body>
-    <h1>This is my websifte</h1>
+    <!--<h1>Welcome to the page</h1>-->
+    <header id="header">
+       <!-- <div id="logo">
+            <img src="logo" height="100px" width="100px" alt="">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="link" target="_blank">Sports</a></li>
+                <li><a href="link" target="_blank">Business</a></li>
+                <li><a href="link" target="_blank">Technology</a></li>
+                <li><a href="link" target="_blank">Weather</a></li>
+                <li><a href="link" target="_blank">Health</a></li>
+            </ul>
+        </nav>-->
+        NewsApp
+    </header>
+    
+<div class="container">
+   <div id="bodyTag" class="row ">
+
+   </div>
+</div>
+
+    <script>const link="https://saurav.tech/NewsAPI/top-headlines/category/sports/in.json";
+        function getAPIdata(URL){
+            fetch(URL).then((res)=>{return res.json ();}).then((data)=>displaydata(data)).catch((err)=>console.log("Error message"));
+        }  
+        function displaydata(APIData){
+            console.log(APIData);
+            var dataarr=APIData.articles
+            for( i of dataarr){
+        
+        
+                var imgURL=i.urlToImage;
+                var title=i.title;
+                var content=i.content;
+                var fullUrl=i.url;
+                var urlName=i.source.name;
+                title=title.substr(0,50)+"....";
+        
+                console.log(imgURL)
+                console.log(title)
+                console.log(content)
+            
+            
+                var div=document.createElement("div");
+                div.id="card";
+                div.className="col-lg-3 col-md-6"
+                
+                var img=document.createElement("div");
+                img.id="img";
+                img.style.backgroundImage = "url("+imgURL+")";
+        
+        
+                var content=document.createElement("div");
+                content.id="content";
+                var txt=document.createElement("h1");
+                txt.id="title";
+                txt.innerHTML=title;
+                content.appendChild(txt);
+        
+                var link=document.createElement("a");
+                link.href=fullUrl;
+                link.id="link"
+                link.innerHTML=urlName;
+                content.appendChild(link);
+        
+        
+            
+                div.appendChild(img);
+                div.appendChild(content);
+            
+            document.getElementById("bodyTag").appendChild(div);
+            
+            
+        
+        
+            }
+        }
+        getAPIdata(link);</script>
 </body>
 </html>
